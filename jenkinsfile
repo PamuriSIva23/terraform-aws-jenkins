@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    
+}
+
+stages {
+    stage('Checkout Code') {
+        steps {
+            git""
+        }
+    }
+    stage ('terraform init') {
+        steps {
+            sh 'terraform init'
+        }
+    }
+    stage ( 'terraform validate') {
+        steps{
+            sh 'terraform validate'
+        }
+    }
+    stage ('terraform plan') {
+        steps{
+            sh 'terraform plan -out plan.txt'
+        }
+    }
+    stage ('terraform apply') {
+        steps{ 
+            sh 'terraform apply -auto-approve'
+        }
+
+    }
+}
